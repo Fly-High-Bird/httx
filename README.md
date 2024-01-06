@@ -5,7 +5,7 @@
 
 ## Introduction
 
-HTTX is an attempt to make a super simple, meta framework -- similar to [NextJS](https://nextjs.org/), [SvelteKit](https://kit.svelte.dev/), [SolidStart](https://start.solidjs.com) or [Remix](https://remix.run/) -- that is built on Go and Bash. HTTX is a library of [Tools](/todo) for both serving web content as websites and testing your websites. HTTX is built on top of normal file servers like `npx serve` and uses file base routing.
+HTTX is an attempt to make a super simple, meta framework -- similar to [NextJS](https://nextjs.org/), [SvelteKit](https://kit.svelte.dev/), [SolidStart](https://start.solidjs.com) or [Remix](https://remix.run/) -- that is built on Go and Bash. HTTX is a library of [Tools](/cmd) for both serving web content as websites and testing your websites. HTTX is built on top of normal file servers like `npx serve` and uses file base routing.
 
 ## Installation
 
