@@ -3,17 +3,17 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"kokodo"
 	"log"
 	"os"
 
+	"github.com/fly-high-bird/httx"
 	"github.com/pkg/errors"
 )
 
 func main() {
 	var (
 		buf    bytes.Buffer
-		ctx    = kokodo.LoadContext()
+		ctx    = httx.LoadContext()
 		stdout = json.NewEncoder(os.Stdout)
 	)
 
@@ -23,7 +23,7 @@ func main() {
 
 	ctx.Headers["Content-Type"] = "application/json"
 	stdout.SetEscapeHTML(false)
-	stdout.Encode(&kokodo.Response{
+	stdout.Encode(&httx.Response{
 		Headers: ctx.Headers,
 		Body:    buf.String(),
 	})

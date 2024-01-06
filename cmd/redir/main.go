@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"flag"
-	"kokodo"
 	"os"
+
+	"github.com/fly-high-bird/httx"
 )
 
 var (
@@ -16,7 +17,7 @@ func main() {
 
 	var (
 		args   = flag.Args()
-		ctx    = kokodo.LoadContext()
+		ctx    = httx.LoadContext()
 		stdout = json.NewEncoder(os.Stdout)
 	)
 
@@ -28,7 +29,7 @@ func main() {
 		ctx.Headers["Hx-Location"] = args[0]
 	}
 
-	stdout.Encode(&kokodo.Response{
+	stdout.Encode(&httx.Response{
 		Headers:  ctx.Headers,
 		Cookies:  ctx.Cookies,
 		Redirect: args[0],

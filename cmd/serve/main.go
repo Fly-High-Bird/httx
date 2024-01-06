@@ -2,18 +2,19 @@ package main
 
 import (
 	"encoding/json"
-	"kokodo"
 	"os"
+
+	"github.com/fly-high-bird/httx"
 )
 
 func main() {
 	var (
-		ctx    = kokodo.NewContext()
+		ctx    = httx.NewContext()
 		stdout = json.NewEncoder(os.Stdout)
 	)
 
 	stdout.SetEscapeHTML(false)
-	stdout.Encode(&kokodo.Response{
+	stdout.Encode(&httx.Response{
 		Headers: ctx.Headers,
 		Body:    string(ctx.Body),
 	})

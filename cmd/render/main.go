@@ -4,17 +4,17 @@ import (
 	"bytes"
 	"encoding/json"
 	"html/template"
-	"kokodo"
 	"log"
 	"os"
 	"strings"
 
+	"github.com/fly-high-bird/httx"
 	"github.com/pkg/errors"
 )
 
 func main() {
 	var (
-		ctx    kokodo.Context
+		ctx    httx.Context
 		b      bytes.Buffer
 		name   = os.Args[1]
 		stdout = json.NewEncoder(os.Stdout)
@@ -33,7 +33,7 @@ func main() {
 		log.Fatal(errors.Wrap(err, "failed to parse tmpl"))
 	}
 
-	ctx = kokodo.LoadContext()
+	ctx = httx.LoadContext()
 
 	tmpl.ParseGlob("_templates/**/*.html")
 
@@ -42,7 +42,7 @@ func main() {
 	}
 
 	stdout.SetEscapeHTML(false)
-	stdout.Encode(&kokodo.Response{
+	stdout.Encode(&httx.Response{
 		Headers: ctx.Headers,
 		Cookies: ctx.Cookies,
 		Body:    b.String(),

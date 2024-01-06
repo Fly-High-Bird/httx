@@ -4,16 +4,16 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
-	"kokodo"
 	"log"
 	"os"
 
+	"github.com/fly-high-bird/httx"
 	"github.com/pkg/errors"
 )
 
 func main() {
 	var (
-		ctx       kokodo.Context
+		ctx       httx.Context
 		b         bytes.Buffer
 		name      = os.Args[1]
 		tmpl, err = template.ParseFiles("_templates/" + name + ".html")
@@ -24,7 +24,7 @@ func main() {
 	}
 
 	tmpl.ParseGlob("_templates/**/*.html")
-	ctx = kokodo.LoadContext()
+	ctx = httx.LoadContext()
 
 	if err = tmpl.Execute(&b, ctx.Props); err != nil {
 		log.Fatal(errors.Wrap(err, "failed to render"))

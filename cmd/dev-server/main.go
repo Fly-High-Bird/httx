@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/fly-high-bird/httx"
 	"github.com/joho/godotenv"
 )
 
@@ -23,7 +24,7 @@ func main() {
 	}
 
 	log.Printf("Mounting to directory: %s", *path)
-	h := .Mount(*path, env)
+	h := httx.Mount(*path, env)
 	if err := h.Start(); err != nil {
 		log.Fatal(err)
 	}

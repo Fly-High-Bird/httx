@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"kokodo"
+
+	"github.com/fly-high-bird/httx"
 )
 
 func main() {
-	ctx := kokodo.NewContext()
+	ctx := httx.NewContext()
 	ctx.ParseStdin()
 	fmt.Print(string(ctx.Body))
 }
