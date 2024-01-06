@@ -7,6 +7,57 @@
 
 HTTX is an attempt to make a super simple, meta framework -- similar to [NextJS](https://nextjs.org/), [SvelteKit](https://kit.svelte.dev/), [SolidStart](https://start.solidjs.com) or [Remix](https://remix.run/) -- that is built on Go and Bash. HTTX is a library of [Tools](/todo) for both serving web content as websites and testing your websites. HTTX is built on top of normal file servers like `npx serve` and uses file base routing.
 
+## Installation
+
+```
+go install github.com/fly-high-bird/httx/cmd/...
+```
+
+## Quick Start
+
+First consider the following:
+
+```html
+<!-- ./index.html -->
+<html>
+  <head>...</head>
+  <body>
+    Hello Luke Skywalker!
+  </body>
+</html>
+```
+
+This will be a great new homepage, but one problem not everyone's name is Luke Skywalker. To fix this lets move the file to `./_templates/homepage.html` and make a new file:
+
+```bash
+# ./index.sh
+
+# Set the name property to the value of the query param with the key name
+with-prop "name" $QUERY_NAME |
+
+# render the homepage template we created
+render "homepage"
+```
+
+Next change the template to use [Go's HTML Templating](https://pkg.go.dev/html/template) with a map of props passed in as the global object.
+
+```html
+<!-- ./_templates/homepage.html -->
+<html>
+  <head>...</head>
+  <body>
+    Hello {{.name}}!
+  </body>
+</html>
+```
+
+Now we can run our server and navigat to `http://localhost:8080?name=Mario%20Mario` and see our new message.
+
+```
+# run the httx command to run a dev server at the given path
+$ httx .
+```
+
 ## Motivation
 
 HTTX is built on the philosophy that moving all of our problems into more higher level abstracts does not always help us most effectively deliver content to our users. This is a philosophy heavily inspired by [HTMX](https://htmx.org) -- even down to the name ;)
@@ -23,8 +74,3 @@ The processing of a request revolves around the Context. This is a datastructure
 
 Once, the `render` -- or `redir` and `to-json` -- command is called the Context will be consumed into a Response object. This Response object will then be interpreted and formatted into an http response using Go's [net/http](https://pkg.go.dev/net/http) package.
 
-## Installation
-
-```
-go install github.com/fly-high-bird/httx@latest
-```
