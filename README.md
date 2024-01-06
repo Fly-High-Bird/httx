@@ -33,7 +33,7 @@ This will be a great new homepage, but one problem not everyone's name is Luke S
 # ./index.sh
 
 # Set the name property to the value of the query param with the key name
-with-prop "name" $QUERY_NAME |
+with-prop name "$QUERY_NAME" |
 
 # render the homepage template we created
 render "homepage"
@@ -58,7 +58,7 @@ Now we can run our server and navigat to `http://localhost:8080?name=Mario%20Mar
 $ httx --path . --http :8080
 ```
 
-**This example can be found as the [Readme Example](/examples/readme)**
+**A more complex vesion of this example can be found here: [Readme Example](/examples/readme).**
 
 ## Motivation
 
