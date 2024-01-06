@@ -9,12 +9,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var (
-	path = flag.String("path", ".", "path to root dir")
-	addr = flag.String("addr", ":8080", "http address")
-)
+var path, addr string
 
 func main() {
+	flag.StringVar(&path, "path", ".", "path to root dir")
+	flag.StringVar(&addr, "http", ":8080", "http address")
+
 	flag.Parse()
 
 	log.Println("Loading any environment variables")
@@ -23,14 +23,14 @@ func main() {
 		log.Println("No .env file found locally")
 	}
 
-	log.Printf("Mounting to directory: %s", *path)
-	h := httx.Mount(*path, env)
+	log.Printf("Mounting to directory: %s", path)
+	h := httx.Mount(path, env)
 	if err := h.Start(); err != nil {
 		log.Fatal(err)
 	}
 
-	log.Printf("Listening at http://%s", *addr)
-	if err := http.ListenAndServe(*addr, h); err != nil {
+	log.Printf("Listening at http://%s", addr)
+	if err := http.ListenAndServe(addr, h); err != nil {
 		log.Fatal(err)
 	}
 }

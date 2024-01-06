@@ -55,8 +55,10 @@ Now we can run our server and navigat to `http://localhost:8080?name=Mario%20Mar
 
 ```
 # run the httx command to run a dev server at the given path
-$ httx .
+$ httx --path . --http :8080
 ```
+
+**This example can be found as the [Readme Example](/examples/readme)**
 
 ## Motivation
 
