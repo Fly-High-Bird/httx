@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"kokodo"
 	"log"
 	"net/http"
 
@@ -24,7 +23,7 @@ func main() {
 	}
 
 	log.Printf("Mounting to directory: %s", *path)
-	h := kokodo.Mount(*path, env)
+	h := .Mount(*path, env)
 	if err := h.Start(); err != nil {
 		log.Fatal(err)
 	}
